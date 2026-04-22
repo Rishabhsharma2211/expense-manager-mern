@@ -12,10 +12,12 @@ export default function Dashboard() {
   // Fetch expenses
   const fetchData = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/expenses", {
-        headers: { Authorization: localStorage.getItem("token") }
-      });
-      console.log(res.data); // 👈 check data
+      const res = await axios.get(
+        "https://expense-manager-mern-cwu6.onrender.com/api/expenses",
+        {
+          headers: { Authorization: localStorage.getItem("token") }
+        }
+      );
       setExpenses(res.data);
     } catch (err) {
       console.log(err);
@@ -29,11 +31,15 @@ export default function Dashboard() {
   // Add expense
   const addExpense = async () => {
     try {
-      await axios.post("http://localhost:5000/api/expense", form, {
-        headers: { Authorization: localStorage.getItem("token") }
-      });
+      await axios.post(
+        "https://expense-manager-mern-cwu6.onrender.com/api/expense",
+        form,
+        {
+          headers: { Authorization: localStorage.getItem("token") }
+        }
+      );
       alert("Expense Added");
-      fetchData(); // refresh
+      fetchData();
     } catch (err) {
       console.log(err);
     }
@@ -43,7 +49,6 @@ export default function Dashboard() {
     <div>
       <h2>Dashboard</h2>
 
-      {/* ✅ Add Expense Form */}
       <input
         placeholder="Title"
         onChange={e => setForm({ ...form, title: e.target.value })}
@@ -59,7 +64,6 @@ export default function Dashboard() {
       />
       <button onClick={addExpense}>Add</button>
 
-      {/* ✅ Expense List */}
       {expenses.length === 0 ? (
         <p>No expenses found</p>
       ) : (

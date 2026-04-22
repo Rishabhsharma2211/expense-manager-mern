@@ -5,7 +5,7 @@ export default function Register() {
   const [form, setForm] = useState({});
 
   const handleSubmit = async () => {
-    await axios.post("http://localhost:5000/api/register", form);
+    await axios.post("https://expense-manager-mern-cwu6.onrender.com/api/register", form);
     alert("Registered");
   };
 
